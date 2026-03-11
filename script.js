@@ -1,11 +1,10 @@
-// ===== Configuration =====
 const CONFIG = {
-    apiBaseUrl: window.API_CONFIG?.apiBaseUrl || 'https://hypothalamic-lianne-unfurnitured.ngrok-free.dev',
+    apiBaseUrl: window.API_CONFIG.apiBaseUrl,
     threshold: 0.5,
     maxRetries: 3,
     retryDelay: 1000
-};
-
+  };
+  
 // ===== State Management =====
 const state = {
     isConnected: false,
@@ -60,8 +59,7 @@ async function checkServerHealth() {
         const response = await fetch(`${CONFIG.apiBaseUrl}/health`, {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json',
-                'ngrok-skip-browser-warning': 'true'
+                'Content-Type': 'application/json'
             }
         });
 
@@ -135,8 +133,7 @@ async function analyzeIntent(text, retryCount = 0) {
         const response = await fetch(`${CONFIG.apiBaseUrl}/parse`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'ngrok-skip-browser-warning': 'true'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({ utterance: text })
         });
